@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+// ユーザーの型
+type User = {
+  id: number;
+  name: string;
+  age: number;
+};
 
+// 任意の2人のユーザーを定義
+const users: User[] = [
+  { id: 1, name: "田中 太郎", age: 28 },
+  { id: 2, name: "佐藤 花子", age: 32 },
+];
+
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+    <div style={{ padding: "20px" }}>
+      <h2>ユーザー一覧</h2>
+      <table border={1} cellPadding={8} cellSpacing={0}>
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>年齢</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.name}</td>
+              <td>{user.age}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
